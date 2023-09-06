@@ -1,6 +1,7 @@
-// dom elements for function ------------------------------------------------------
-
+// serch mode to determine serch button clicked
 let serchMode = "none";
+
+// dom elements for function --------------------------------------------------------
 
 const myResultElement = document.getElementById("myResult");
 
@@ -29,46 +30,25 @@ myIdSearchButton.addEventListener("click", () => {
   console.info(myIdInput.value);
 });
 
-
+//-------------------------------------------------------------------------------------
 
 // fetch functions --------------------------------------------------------------------
+// your code goes here
 
-function getRecipiesByName(myName) {
-  apiUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${myName}`;
 
-  fetch(apiUrl)
-    .then((response) => {
-     
-        // error checking
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status}`);
-      }
 
-      return response.json(); // Parse the response body as JSON
-    })
 
-    .then((data) => {
-      // send data on to view functions
-      setupResultView(data);
-    })
 
-    .catch((error) => {
-      serchMode = "error";
-      console.error("Error:", error);
-      setupResultView(error);
-    });
-}
 
-//const apiUrl = 'https://dog.ceo/api/breeds/image/random/1';
 
-//const apiUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=pasta';
 
-// view code ---------------------------------------------------------
+// view code --------------------------------------------------------------------------
 
 function setupResultView(myData) {
   switch (serchMode) {
     case "firstLetterSearch":
       console.log(myData);
+      // do view stuff with the data here
       break;
 
     case "nameSearch":
@@ -84,14 +64,16 @@ function setupResultView(myData) {
 
     case "idSearch":
       console.log(myData);
+      // do view stuff with the data here
       break;
 
     case "errorMessage":
       console.log(myData);
+      // do view stuff with the error msg here
       break;
 
     default:
-      console.warn("ooops no data to show");
+      console.warn("ooops no data to show from setupResultView");
       break;
   }
 }
